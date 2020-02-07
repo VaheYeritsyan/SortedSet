@@ -1,5 +1,9 @@
 package set;
 
+/**
+ * @author Vahe Yeritsyan
+ * @param <T>
+ */
 public class Node<T extends Comparable<T>> {
     private T data;
     private Node left;
@@ -33,6 +37,10 @@ public class Node<T extends Comparable<T>> {
         this.right = right;
     }
 
+    /**
+     * recursively insert the value in it's place
+     * @param value
+     */
     public void insert(T value) {
         if (value.compareTo(data) < 0) {
             if (left == null) {

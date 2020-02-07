@@ -1,10 +1,18 @@
 package set;
 
-
+/**
+ * @author Vahe Yeritsyan
+ * @param <T>
+ */
 public class BinarySearchTree<T extends Comparable<T>> {
     private Node root;
     private int size = 0;
 
+    /**
+     *
+     * @param value
+     * @return true if value was added, false otherwise
+     */
     public boolean add(T value) {
         if (value == null) {
             return false;
@@ -21,12 +29,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return true;
     }
 
+    /**
+     * traverses in-order and prints all the values
+     */
     public void traverse() {
         if (root != null) {
             root.traverse();
             System.out.println();
         }
     }
+
 
     public T getMin() {
         if (root == null) {
@@ -74,5 +86,3 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return size;
     }
 }
-
-
