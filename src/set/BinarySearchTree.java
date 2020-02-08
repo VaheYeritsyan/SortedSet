@@ -1,15 +1,17 @@
 package set;
 
+import java.util.NoSuchElementException;
+
 /**
+ * @param <T> Accepts any object that implements comparable
+ *            adds the values sorted by their natural ordering
  * @author Vahe Yeritsyan
- * @param <T>
  */
 public class BinarySearchTree<T extends Comparable<T>> {
     private Node root;
     private int size = 0;
 
     /**
-     *
      * @param value
      * @return true if value was added, false otherwise
      */
@@ -39,14 +41,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-
+    /**
+     * @return the minimum element of the list
+     * @throws NoSuchElementException if the set is empty
+     */
     public T getMin() {
         if (root == null) {
-            new RuntimeException("the set is empty");
+            new NoSuchElementException("the set is empty");
         }
         return (T) root.getMin();
     }
 
+    /**
+     * @param value to be deleted
+     * @return true if the element was deleted, false if not found
+     */
     public boolean remove(T value) {
         if (!contains(value)) {
             return false;
@@ -56,6 +65,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return sizeBefore != size;
     }
 
+    /**
+     * helper function for removing
+     */
     public Node remove(Node subtree, T value) {
         if (value.compareTo((T) subtree.getData()) < 0) {
             subtree.setLeft(remove(subtree.getLeft(), value));
@@ -75,6 +87,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return subtree;
     }
 
+    /**
+     * @param value to be checked if exists
+     * @return true if value is in the set, false otherwise
+     */
+
     public boolean contains(T value) {
         if (root == null) {
             return false;
@@ -82,6 +99,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return root.contains(value);
     }
 
+    /**
+     * @return the amount of elements in the set
+     */
     public int getSize() {
         return size;
     }

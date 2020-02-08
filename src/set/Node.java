@@ -1,8 +1,8 @@
 package set;
 
 /**
+ * @param <T> Accepts any object that implements comparable
  * @author Vahe Yeritsyan
- * @param <T>
  */
 public class Node<T extends Comparable<T>> {
     private T data;
@@ -38,7 +38,8 @@ public class Node<T extends Comparable<T>> {
     }
 
     /**
-     * recursively insert the value in it's place
+     * recursively insert the value in it's place, order by object's natural order
+     *
      * @param value
      */
     public void insert(T value) {
@@ -57,6 +58,10 @@ public class Node<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * traverses the set in-order and prints the values
+     */
+
     public void traverse() {
         if (left != null) {
             left.traverse();
@@ -67,6 +72,9 @@ public class Node<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * @return the minimum element of the list
+     */
     public T getMin() {
         if (left != null) {
             return (T) left.getMin();
@@ -74,6 +82,10 @@ public class Node<T extends Comparable<T>> {
         return data;
     }
 
+    /**
+     * @param value to be checked if exists
+     * @return true if value is in the set, false otherwise
+     */
     public boolean contains(T value) {
         if (value.compareTo(data) == 0) {
             return true;
